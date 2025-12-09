@@ -1,4 +1,4 @@
-package gestao_cinema.model;
+package gestao_cinema.domain.model;
 
 public class Filme  {
 

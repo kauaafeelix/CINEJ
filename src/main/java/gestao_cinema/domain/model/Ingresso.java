@@ -1,7 +1,7 @@
-package gestao_cinema.model;
+package gestao_cinema.domain.model;
 
-import gestao_cinema.model.enums.StatusIngresso;
-import gestao_cinema.model.enums.TipoIngresso;
+import gestao_cinema.domain.model.enums.StatusIngresso;
+import gestao_cinema.domain.model.enums.TipoIngresso;
 
 import java.util.Date;
 

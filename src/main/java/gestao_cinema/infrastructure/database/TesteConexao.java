@@ -1,4 +1,4 @@
-package gestao_cinema.infraestrutura.database;
+package gestao_cinema.infrastructure.database;
 
 import java.sql.SQLException;
 

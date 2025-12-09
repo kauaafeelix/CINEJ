@@ -1,4 +1,4 @@
-package gestao_cinema.model;
+package gestao_cinema.domain.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;

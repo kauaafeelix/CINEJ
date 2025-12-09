@@ -1,4 +1,4 @@
-package gestao_cinema.model.enums;
+package gestao_cinema.domain.model.enums;
 
 public enum StatusIngresso {
     ATIVO,
