@@ -1,4 +1,6 @@
 package gestao_cinema.infrastructure.persistence;
 
-public class SessaoRepositoryImpl {
+import gestao_cinema.domain.repository.IngressoRepository;
+
+public class SessaoRepositoryImpl implements IngressoRepository {
 }
