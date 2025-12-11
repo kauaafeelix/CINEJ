@@ -13,7 +13,7 @@ public interface ClienteRepository {
 
     public void atualizarCliente(Cliente cliente)  throws SQLException;
 
-    public void deletarCliente(Long id)  throws SQLException;
+    public void deletarCliente(long id)  throws SQLException;
 
     public List<Cliente> buscarClientePorNome(String nome)  throws SQLException;
 }

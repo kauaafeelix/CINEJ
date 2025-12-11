@@ -74,12 +74,41 @@ public class ClienteRepositoryImpl implements ClienteRepository {
 
     @Override
     public void atualizarCliente(Cliente cliente)  throws SQLException{
+        String sql = """
+                UPDATE Cliente
+                SET 
+                nome = ?,
+                email = ?,
+                saldo_carteira = ?
+                WHERE id = ?
+                """;
+
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+
+            ps.setString(1, cliente.getNome());
+            ps.setString(2, cliente.getEmail());
+            ps.setDouble(3, cliente.getSaldoCarteira());
+            ps.setLong(4, cliente.getId());
+
+            ps.executeUpdate();
+        }
 
     }
 
     @Override
-    public void deletarCliente(Long id)  throws SQLException{
+    public void deletarCliente(long id)  throws SQLException{
+        String sql = """
+                DELETE FROM Cliente
+                WHERE id = ?
+                """;
 
+        try(Connection conn = Conexao.conectar();
+        PreparedStatement ps = conn.prepareStatement(sql)){
+
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        }
     }
 
     @Override
