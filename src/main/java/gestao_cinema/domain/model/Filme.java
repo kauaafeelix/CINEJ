@@ -55,7 +55,7 @@ public class Filme  {
         this.duracaoMinutos = duracaoMinutos;
     }
 
-    public boolean isLancamento() {
+    public boolean getLancamento() {
         return lancamento;
     }
 
