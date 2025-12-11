@@ -2,15 +2,18 @@ package gestao_cinema.domain.repository;
 
 import gestao_cinema.domain.model.Cliente;
 
+import java.sql.SQLException;
+import java.util.List;
+
 public interface ClienteRepository {
 
-    public void criarCliente(Cliente cliente);
+    public Cliente criarCliente(Cliente cliente) throws SQLException;
 
-    public Cliente buscarClientePorId(Long id);
+    public Cliente buscarClientePorId(long id)  throws SQLException;
 
-    public void atualizarCliente(Cliente cliente);
+    public void atualizarCliente(Cliente cliente)  throws SQLException;
 
-    public void deletarCliente(Long id);
+    public void deletarCliente(Long id)  throws SQLException;
 
-    public Cliente buscarClientePorNome(String nome);
+    public List<Cliente> buscarClientePorNome(String nome)  throws SQLException;
 }
