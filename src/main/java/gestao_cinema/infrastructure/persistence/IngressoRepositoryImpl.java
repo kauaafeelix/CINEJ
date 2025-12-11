@@ -83,7 +83,7 @@ public class IngressoRepositoryImpl implements IngressoRepository {
         try (Connection conn = Conexao.conectar();
              PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            try (ResultSet rs = ps.executeQuery()) {
+            ResultSet rs = ps.executeQuery() ;
                 while (rs.next()) {
                     long id = rs.getLong("id");
                     String clienteNome = rs.getString("cliente_nome");
@@ -106,7 +106,6 @@ public class IngressoRepositoryImpl implements IngressoRepository {
                     ingressos.add(dto);
                 }
             }
-        }
         return ingressos;
     }
 }
