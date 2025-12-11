@@ -6,6 +6,7 @@ import gestao_cinema.domain.model.Filme;
 import gestao_cinema.domain.model.Ingresso;
 import gestao_cinema.domain.model.Sessao;
 import gestao_cinema.domain.model.enums.StatusIngresso;
+import gestao_cinema.domain.model.enums.TipoIngresso;
 import gestao_cinema.domain.repository.IngressoRepository;
 import gestao_cinema.infrastructure.database.Conexao;
 
@@ -58,12 +59,13 @@ public class IngressoRepositoryImpl implements IngressoRepository {
     }
 
     @Override
-    public List<EmitirIngressoDTO> emitirIngresso()  throws SQLException{
+    public List<EmitirIngressoDTO> emitirIngresso() throws SQLException {
 
         List<EmitirIngressoDTO> ingressos = new ArrayList<>();
 
+        // DICA: Mudei o RIGHT JOIN para INNER JOIN (veja a observação abaixo)
         String sql = """
-                SELECT
+            SELECT
                 i.id,
                 c.nome AS cliente_nome,
                 s.sala AS sala_sessao,
@@ -71,30 +73,40 @@ public class IngressoRepositoryImpl implements IngressoRepository {
                 i.data_compra,
                 i.tipo_ingresso,
                 i.status
-                FROM Ingresso i
-                JOIN Cliente c ON i.cliente_id = c.id
-                JOIN Sessao s ON i.sessao_id = s.id
-                RIGHT JOIN Filme f ON s.filme_id = f.id
-                ORDER BY c.nome
-                """;
+            FROM Ingresso i
+            INNER JOIN Cliente c ON i.cliente_id = c.id
+            INNER JOIN Sessao s ON i.sessao_id = s.id
+            INNER JOIN Filme f ON s.filme_id = f.id
+            ORDER BY c.nome
+            """;
 
-        try (Connection conn =Conexao.conectar();
-        PreparedStatement ps = conn.prepareStatement(sql)){
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
 
-            ResultSet rs = ps.executeQuery();
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    long id = rs.getLong("id");
+                    String clienteNome = rs.getString("cliente_nome");
+                    String salaSessao = rs.getString("sala_sessao");
+                    String filmeTitulo = rs.getString("filme_titulo");
+                    Date dataCompra = rs.getDate("data_compra");
+                    TipoIngresso tipoIngresso = TipoIngresso.valueOf(rs.getString("tipo_ingresso"));
+                    StatusIngresso status = StatusIngresso.valueOf(rs.getString("status"));
 
-            while (rs.next()){
+                    EmitirIngressoDTO dto = new EmitirIngressoDTO(
+                            id,
+                            clienteNome,
+                            salaSessao,
+                            filmeTitulo,
+                            dataCompra,
+                            tipoIngresso,
+                            status
+                    );
 
-                long id = rs.getLong("id");
-                String clienteNome = rs.getString("cliente_nome");
-                String salaSessao = rs.getString("sala_sessao");
-                String filmeTitulo = rs.getString("filme_titulo");
-                Date dataCompra = rs.getDate("data_compra");
-                String tipoIngresso = rs.getString("tipo_ingresso");
-                String status = rs.getString("status");
-
+                    ingressos.add(dto);
+                }
             }
         }
-        return List.of();
+        return ingressos;
     }
 }
