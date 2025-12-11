@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface FilmeRepository {
 
-    public void criarFilme(Filme filme ) throws SQLException;
+    public Filme criarFilme(Filme filme ) throws SQLException;
 
     public List<Filme> buscarFilmePorGenero(String genero)  throws SQLException;
 
