@@ -63,7 +63,6 @@ public class IngressoRepositoryImpl implements IngressoRepository {
 
         List<EmitirIngressoDTO> ingressos = new ArrayList<>();
 
-        // DICA: Mudei o RIGHT JOIN para INNER JOIN (veja a observação abaixo)
         String sql = """
             SELECT
                 i.id,
