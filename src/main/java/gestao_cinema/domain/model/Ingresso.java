@@ -3,17 +3,18 @@ package gestao_cinema.domain.model;
 import gestao_cinema.domain.model.enums.StatusIngresso;
 import gestao_cinema.domain.model.enums.TipoIngresso;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 public class Ingresso {
     private long id;
     private long idCliente;
     private long idSessao;
-    private Date dataCompra;
+    private LocalDate dataCompra;
     private TipoIngresso tipoIngresso;
     private StatusIngresso statusIngresso;
 
-    public Ingresso(long id, long idCliente, long idSessao, Date dataCompra, TipoIngresso tipoIngresso, StatusIngresso statusIngresso) {
+    public Ingresso(long id, long idCliente, long idSessao, LocalDate dataCompra, TipoIngresso tipoIngresso, StatusIngresso statusIngresso) {
         this.id = id;
         this.idCliente = idCliente;
         this.idSessao = idSessao;
@@ -22,7 +23,7 @@ public class Ingresso {
         this.statusIngresso = statusIngresso;
     }
 
-    public Ingresso(long idCliente, long idSessao, Date dataCompra, TipoIngresso tipoIngresso, StatusIngresso statusIngresso) {
+    public Ingresso(long idCliente, long idSessao, LocalDate dataCompra, TipoIngresso tipoIngresso, StatusIngresso statusIngresso) {
         this.idCliente = idCliente;
         this.idSessao = idSessao;
         this.dataCompra = dataCompra;
@@ -54,11 +55,11 @@ public class Ingresso {
         this.idSessao = idSessao;
     }
 
-    public Date getDataCompra() {
+    public LocalDate getDataCompra() {
         return dataCompra;
     }
 
-    public void setDataCompra(Date dataCompra) {
+    public void setDataCompra(LocalDate dataCompra) {
         this.dataCompra = dataCompra;
     }
 
