@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface SessaoRepository {
 
-    public void criarSessao(Sessao sessao)  throws SQLException;
+    public Sessao criarSessao(Sessao sessao)  throws SQLException;
 
-    public List<Sessao>procurarSessaoPorFilme() throws SQLException;
+    public List<Sessao>procurarSessoesPorFilme(String nomeFilme) throws SQLException;
 }
