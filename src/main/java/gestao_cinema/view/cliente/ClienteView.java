@@ -1,4 +1,4 @@
-package view.cliente;
+package gestao_cinema.view.cliente;
 
 import gestao_cinema.domain.model.Cliente;
 

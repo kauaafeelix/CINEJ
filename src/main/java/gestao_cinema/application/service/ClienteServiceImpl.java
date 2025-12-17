@@ -2,7 +2,7 @@ package gestao_cinema.application.service;
 
 import gestao_cinema.application.service.contracts.ClienteService;
 import gestao_cinema.domain.model.Cliente;
-import view.cliente.ClienteView;
+import gestao_cinema.view.cliente.ClienteView;
 
 public class ClienteServiceImpl implements ClienteService {
 
