@@ -12,10 +12,12 @@ public class ClienteView {
 
     public int menuCliente (){
         System.out.println("""
+                ========= CLIENTE ==========
                 1 - Cadastrar Cliente
                 2 - Listar Clientes
                 3 - Atualizar um Cliente
                 4 - Deletar um Cliente
+                0 - Voltar ao Menu Principal
                 
                 """);
 
