@@ -29,10 +29,7 @@ public class FilmeView {
     }
 
     public Filme cadastrarFilmes(){
-        System.out.println("""
-                ==== CADASTRO DE FILME ====
-                
-        \n        """);
+        System.out.println("========= CADASTRO DE FILME ========\n");
 
         System.out.println("Digite o Titulo do Filme:");
         String titulo = scStr.nextLine();
