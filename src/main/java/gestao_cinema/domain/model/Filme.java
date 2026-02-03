@@ -23,6 +23,10 @@ public class Filme  {
         this.lancamento = lancamento;
     }
 
+    public Filme() {
+
+    }
+
     public long getId() {
         return id;
     }
