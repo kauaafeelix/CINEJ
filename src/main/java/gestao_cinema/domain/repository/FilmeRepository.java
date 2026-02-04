@@ -11,6 +11,8 @@ public interface FilmeRepository {
 
     public List<Filme> buscarFilmePorGenero(String genero)  throws SQLException;
 
+    public List<Filme> listarFilmes() throws SQLException;
 
+    public Filme deletarFilme(long id) throws SQLException;
 
 }
