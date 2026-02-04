@@ -54,13 +54,47 @@ public class FilmeRepositoryImpl implements FilmeRepository {
                 duracao_minutos, 
                 lancamento
                 FROM Filme
-                WHERE genero = ?
+                WHERE genero LIKE ?
                 """;
 
         try (Connection conn = Conexao.conectar();
         PreparedStatement ps = conn.prepareStatement(sql)){
 
-            ps.setString(1, genero);
+            ps.setString(1, "%" +genero+"%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()){
+                Filme filme = new Filme(
+                        rs.getLong("id"),
+                        rs.getString("titulo"),
+                        rs.getString("genero"),
+                        rs.getInt("duracao_minutos"),
+                        rs.getBoolean("lancamento")
+                );
+                filmes.add(filme);
+            }
+        }
+        return filmes;
+    }
+
+    @Override
+    public List<Filme>listarFilmes() throws SQLException {
+
+        List<Filme>filmes = new ArrayList<>();
+
+        String sql = """
+                SELECT 
+                id, 
+                titulo, 
+                genero, 
+                duracao_minutos, 
+                lancamento
+                FROM Filme
+                """;
+
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)){
 
             ResultSet rs = ps.executeQuery();
 
@@ -76,5 +110,20 @@ public class FilmeRepositoryImpl implements FilmeRepository {
             }
             return filmes;
         }
+    }
+
+
+    @Override
+    public Filme deletarFilme(long id) throws SQLException {
+        String sql = """
+                DELETE FROM Filme
+                WHERE id = ?
+                """;
+        try (Connection conn = Conexao.conectar();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+            ps.setLong(1, id);
+            ps.executeUpdate();
+        }
+        return null;
     }
 }
